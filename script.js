@@ -8,7 +8,7 @@ let currentQuestionIndex = 0;
 let currentPlayer = 1;
 let responsesPlayer1 = [];
 let responsesPlayer2 = [];
-let startX, startY, distX, distY, threshold = 50, allowedTime = 500, elapsedTime, startTime;
+let startX, startY, distX, distY, threshold = 100, allowedTime = 500, elapsedTime, startTime;
 
 function handleResponse(response, swipeDirection = null) {
     const currentQuestionId = questions[currentQuestionIndex].id;
@@ -88,6 +88,11 @@ function handleTouchStart(e) {
 }
 
 function handleTouchMove(e) {
+    const touchObj = e.changedTouches[0];
+    distX = touchObj.pageX - startX;
+    distY = touchObj.pageY - startY;
+    const questionCard = document.getElementById('question-card');
+    questionCard.style.transform = `translate(${distX}px, ${distY}px) rotate(${distX / 10}deg)`;
     e.preventDefault();
 }
 
@@ -96,6 +101,7 @@ function handleTouchEnd(e) {
     distX = touchObj.pageX - startX;
     distY = touchObj.pageY - startY;
     elapsedTime = new Date().getTime() - startTime;
+    const questionCard = document.getElementById('question-card');
     if (elapsedTime <= allowedTime) {
         if (Math.abs(distX) >= threshold && Math.abs(distY) <= 100) {
             if (distX > 0) {
@@ -103,7 +109,11 @@ function handleTouchEnd(e) {
             } else {
                 handleResponse('no', 'swipe-left');
             }
+        } else {
+            questionCard.style.transform = '';
         }
+    } else {
+        questionCard.style.transform = '';
     }
     e.preventDefault();
 }
