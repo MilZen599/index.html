@@ -4,6 +4,9 @@ body, html, #root {
     height: 100%;
     font-family: 'Arial', sans-serif;
     background-color: #f0f0f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .app {
@@ -11,39 +14,35 @@ body, html, #root {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    width: 100%;
+    max-width: 500px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 .app-header {
-    position: fixed;
-    top: 0;
     width: 100%;
-    background-color: #ffffff;
-    padding: 10px 0;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 1.5em;
     color: #333;
+    margin-bottom: 20px;
 }
 
 .question-card {
-    margin-top: 80px;
-    width: 80%;
-    max-width: 500px;
+    width: 100%;
     text-align: center;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    position: relative;
+    transition: transform 0.5s ease;
 }
 
 .question-image {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .question-text {
@@ -64,7 +63,7 @@ body, html, #root {
     border-radius: 20px;
     font-size: 1em;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
     font-family: 'Comic Sans MS', cursive, sans-serif;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -97,7 +96,14 @@ body, html, #root {
 }
 
 .waiting, .results {
-    margin-top: 100px;
     text-align: center;
     font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.swipe-right {
+    transform: translateX(1000px) rotate(30deg);
+}
+
+.swipe-left {
+    transform: translateX(-1000px) rotate(-30deg);
 }
