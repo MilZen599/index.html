@@ -10,7 +10,7 @@ let responsesPlayer1 = [];
 let responsesPlayer2 = [];
 let startX, startY, distX, distY, threshold = 50, allowedTime = 500, elapsedTime, startTime;
 
-function handleResponse(response) {
+function handleResponse(response, swipeDirection = null) {
     const currentQuestionId = questions[currentQuestionIndex].id;
     const responseEntry = { questionId: currentQuestionId, response };
 
@@ -20,6 +20,19 @@ function handleResponse(response) {
         responsesPlayer2.push(responseEntry);
     }
 
+    if (swipeDirection) {
+        const questionCard = document.getElementById('question-card');
+        questionCard.classList.add(swipeDirection);
+        setTimeout(() => {
+            questionCard.classList.remove(swipeDirection);
+            nextQuestion();
+        }, 500);
+    } else {
+        nextQuestion();
+    }
+}
+
+function nextQuestion() {
     currentQuestionIndex++;
 
     if (currentQuestionIndex >= questions.length) {
@@ -81,9 +94,9 @@ function handleTouchEnd(e) {
     if (elapsedTime <= allowedTime) {
         if (Math.abs(distX) >= threshold && Math.abs(distY) <= 100) {
             if (distX > 0) {
-                handleResponse('yes');
+                handleResponse('yes', 'swipe-right');
             } else {
-                handleResponse('no');
+                handleResponse('no', 'swipe-left');
             }
         }
     }
