@@ -1,0 +1,103 @@
+body, html, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f5;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.app-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.question-card {
+    margin-top: 80px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.question-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.question-text {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.response-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.response-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.response-buttons button.no {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.response-buttons button.no:hover {
+    background-color: #cc0000;
+}
+
+.response-buttons button.yes {
+    background-color: #4d94ff;
+    color: white;
+}
+
+.response-buttons button.yes:hover {
+    background-color: #0047b3;
+}
+
+.response-buttons button.maybe {
+    background-color: #cccccc;
+    color: black;
+}
+
+.response-buttons button.maybe:hover {
+    background-color: #999999;
+}
+
+.waiting, .results {
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
