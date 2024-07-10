@@ -36,6 +36,8 @@ body, html, #root {
     text-align: center;
     position: relative;
     transition: transform 0.5s ease, opacity 0.5s ease;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .question-image {
@@ -43,6 +45,8 @@ body, html, #root {
     height: auto;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .question-text {
@@ -98,16 +102,6 @@ body, html, #root {
 .waiting, .results {
     text-align: center;
     font-family: 'Comic Sans MS', cursive, sans-serif;
-}
-
-.swipe-right {
-    transform: translateX(1000px) rotate(30deg);
-    opacity: 0;
-}
-
-.swipe-left {
-    transform: translateX(-1000px) rotate(-30deg);
-    opacity: 0;
 }
 
 .stamp {
