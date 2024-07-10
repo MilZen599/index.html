@@ -133,4 +133,5 @@ body, html, #root {
 .stamp.nope {
     color: #ff4d4d;
     border-color: #ff4d4d;
+    opacity: 0.5; /* Transparent red */
 }
