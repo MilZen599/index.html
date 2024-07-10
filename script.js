@@ -22,8 +22,12 @@ function handleResponse(response, swipeDirection = null) {
 
     if (swipeDirection) {
         const questionCard = document.getElementById('question-card');
+        const stamp = document.getElementById('stamp');
+        stamp.className = `stamp ${swipeDirection === 'swipe-right' ? 'like' : 'nope'}`;
+        stamp.style.opacity = 1;
         questionCard.classList.add(swipeDirection);
         setTimeout(() => {
+            stamp.style.opacity = 0;
             questionCard.classList.remove(swipeDirection);
             nextQuestion();
         }, 500);
@@ -64,6 +68,7 @@ function renderQuestion() {
                     <button class="maybe" onclick="handleResponse('maybe')">Maybe</button>
                     <button class="yes" onclick="handleResponse('yes')">Yes</button>
                 </div>
+                <div class="stamp" id="stamp"></div>
             </div>
         </div>
     `;
