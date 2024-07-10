@@ -35,7 +35,7 @@ body, html, #root {
     width: 100%;
     text-align: center;
     position: relative;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .question-image {
@@ -102,8 +102,35 @@ body, html, #root {
 
 .swipe-right {
     transform: translateX(1000px) rotate(30deg);
+    opacity: 0;
 }
 
 .swipe-left {
     transform: translateX(-1000px) rotate(-30deg);
+    opacity: 0;
+}
+
+.stamp {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4em;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    padding: 10px 20px;
+    border: 5px solid;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.stamp.like {
+    color: #4d94ff;
+    border-color: #4d94ff;
+}
+
+.stamp.nope {
+    color: #ff4d4d;
+    border-color: #ff4d4d;
 }
