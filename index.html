@@ -1,112 +1,34 @@
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f5f5f5;
-}
-
-.container {
-    width: 320px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: white;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.settings-icon,
-.battery-icon {
-    width: 20px;
-    height: 20px;
-}
-
-.time {
-    font-size: 14px;
-}
-
-.profile {
-    text-align: center;
-    padding: 20px;
-}
-
-.profile-pic {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.profile-info {
-    margin-top: 10px;
-}
-
-.name {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.details {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5px;
-    color: #888;
-}
-
-.people-icon::before,
-.book-icon::before {
-    content: ' ';
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-size: contain;
-}
-
-.people-icon::before {
-    background-image: url('people-icon.png');
-}
-
-.book-icon::before {
-    background-image: url('book-icon.png');
-}
-
-.actions {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    border-top: 1px solid #eee;
-}
-
-.action-button {
-    width: 50px;
-    height: 50px;
-    border: none;
-    border-radius: 50%;
-    background-size: cover;
-    cursor: pointer;
-}
-
-.rewind {
-    background-image: url('rewind-icon.png');
-}
-
-.nope {
-    background-image: url('nope-icon.png');
-}
-
-.like {
-    background-image: url('like-icon.png');
-}
-
-.super-like {
-    background-image: url('super-like-icon.png');
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinder Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="settings.png" alt="settings" class="settings-icon">
+            <div class="time">11:52 AM</div>
+            <img src="battery.png" alt="battery" class="battery-icon">
+        </div>
+        <div class="profile">
+            <img src="1_oZlDzVwjcq4lxuc3MyZAtA.png" alt="Profile Picture" class="profile-pic">
+            <div class="profile-info">
+                <div class="name">Allison, 26</div>
+                <div class="details">
+                    <span class="people-icon"></span> 0 <span class="book-icon"></span> 0
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <button class="action-button rewind"></button>
+            <button class="action-button nope"></button>
+            <button class="action-button like"></button>
+            <button class="action-button super-like"></button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
