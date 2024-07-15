@@ -60,12 +60,12 @@ main {
     transform: scale(1.2);
 }
 
-.icon-container img {
+.icon-container svg {
     width: 24px;
     height: 24px;
 }
 
-#yes-button img {
+#yes-button.heartbeat {
     animation: heartbeat 1s infinite;
 }
 
