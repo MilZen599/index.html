@@ -9,11 +9,12 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #ff5a5f;
-    color: white;
+    background-color: #fff;
+    color: #000;
     text-align: center;
     padding: 1em 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
 
 main {
@@ -27,6 +28,8 @@ main {
     max-width: 600px;
     margin: 0 auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .image-container img {
@@ -40,21 +43,30 @@ main {
     margin-top: 20px;
 }
 
-.action-button {
-    font-size: 2em;
-    border: none;
-    background: none;
+.icon-container {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #d3d3d3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 15px;
     cursor: pointer;
     transition: transform 0.2s;
 }
 
-.action-button:hover {
+.icon-container:hover {
     transform: scale(1.2);
 }
 
-#yes-button {
-    color: red;
+.icon-container img {
+    width: 24px;
+    height: 24px;
+}
+
+#yes-button img {
+    animation: heartbeat 1s infinite;
 }
 
 @keyframes heartbeat {
