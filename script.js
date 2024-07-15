@@ -27,9 +27,9 @@ function nextImage() {
 
 function animateHeart() {
     const yesButton = document.getElementById('yes-button');
-    yesButton.style.animation = 'heartbeat 1s ease-in-out';
+    yesButton.classList.add('heartbeat');
     yesButton.addEventListener('animationend', () => {
-        yesButton.style.animation = '';
+        yesButton.classList.remove('heartbeat');
     });
 }
 
