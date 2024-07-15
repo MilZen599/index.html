@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test AAA</title>
+    <title>Tinder Clone</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Test AAA</h1>
-    </header>
-    <main>
-        <div class="image-container">
-            <img id="main-image" src="image1.jpg" alt="Image 1">
+    <div class="container">
+        <div class="header">
+            <img src="settings.png" alt="settings" class="settings-icon">
+            <div class="time">11:52 AM</div>
+            <img src="battery.png" alt="battery" class="battery-icon">
         </div>
-        <div class="buttons">
-            <div id="no-button" class="icon-container">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" viewBox="0 0 24 24"><path d="M19.707 4.293l-1.414-1.414-6.293 6.293-6.293-6.293-1.414 1.414 6.293 6.293-6.293 6.293 1.414 1.414 6.293-6.293 6.293 6.293 1.414-1.414-6.293-6.293 6.293-6.293z"/></svg>
-            </div>
-            <div id="maybe-button" class="icon-container">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="gray" viewBox="0 0 24 24"><path d="M12 2c-5.514 0-10 4.486-10 10s4.486 10 10 10 10-4.486 10-10-4.486-10-10-10zm1 17h-2v-2h2v2zm0-4h-2v-10h2v10z"/></svg>
-            </div>
-            <div id="yes-button" class="icon-container">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32c-5.4-4.93-8.92-8.21-8.92-11.54 0-2.89 2.34-5.22 5.22-5.22 1.8 0 3.48.88 4.48 2.25 1-1.37 2.68-2.25 4.48-2.25 2.88 0 5.22 2.33 5.22 5.22 0 3.33-3.52 6.61-8.92 11.54l-1.45 1.32z"/></svg>
+        <div class="profile">
+            <img src="1_oZlDzVwjcq4lxuc3MyZAtA.png" alt="Profile Picture" class="profile-pic">
+            <div class="profile-info">
+                <div class="name">Allison, 26</div>
+                <div class="details">
+                    <span class="people-icon"></span> 0 <span class="book-icon"></span> 0
+                </div>
             </div>
         </div>
-    </main>
+        <div class="actions">
+            <button class="action-button rewind"></button>
+            <button class="action-button nope"></button>
+            <button class="action-button like"></button>
+            <button class="action-button super-like"></button>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
