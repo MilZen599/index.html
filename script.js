@@ -1,46 +1,22 @@
-const images = [
-    'image1.jpg',
-    'image2.jpg',
-    'image3.jpg',
-    // Add more image paths as needed
-];
-let currentIndex = 0;
-const yesResponses = [];
+document.addEventListener('DOMContentLoaded', () => {
+    const rewindButton = document.querySelector('.rewind');
+    const nopeButton = document.querySelector('.nope');
+    const likeButton = document.querySelector('.like');
+    const superLikeButton = document.querySelector('.super-like');
 
-document.getElementById('yes-button').addEventListener('click', () => {
-    animateHeart();
-    yesResponses.push(images[currentIndex]);
-    nextImage();
+    rewindButton.addEventListener('click', () => {
+        alert('Rewind clicked!');
+    });
+
+    nopeButton.addEventListener('click', () => {
+        alert('Nope clicked!');
+    });
+
+    likeButton.addEventListener('click', () => {
+        alert('Like clicked!');
+    });
+
+    superLikeButton.addEventListener('click', () => {
+        alert('Super Like clicked!');
+    });
 });
-
-document.getElementById('maybe-button').addEventListener('click', nextImage);
-document.getElementById('no-button').addEventListener('click', nextImage);
-
-function nextImage() {
-    currentIndex++;
-    if (currentIndex < images.length) {
-        document.getElementById('main-image').src = images[currentIndex];
-    } else {
-        showFinalPage();
-    }
-}
-
-function animateHeart() {
-    const yesButton = document.getElementById('yes-button');
-    yesButton.classList.add('heartbeat');
-    yesButton.addEventListener('animationend', () => {
-        yesButton.classList.remove('heartbeat');
-    });
-}
-
-function showFinalPage() {
-    const main = document.querySelector('main');
-    main.innerHTML = '<h2>Vos réponses "oui"</h2>';
-    yesResponses.forEach(src => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = 'Selected image';
-        img.style.width = '100%';
-        main.appendChild(img);
-    });
-}
