@@ -79,4 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
             star.addEventListener('click', () => {
                 stars.forEach(s => s.classList.remove('selected'));
                 star.classList.add('selected');
-       
+                console.log(`Star ${star.getAttribute('data-value')} selected for questionnaire ${index + 1}`);
+            });
+        });
+    });
+});
