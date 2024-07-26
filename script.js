@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
     const submitBtn = document.getElementById('submit-btn');
 
-    const stars1 = document.querySelectorAll('#questionnaire1-section .star');
-    const stars2 = document.querySelectorAll('#questionnaire2-section .star');
+    const stars1 = document.querySelectorAll('#stars1 .star');
+    const stars2 = document.querySelectorAll('#stars2 .star');
     let selectedRating1 = 0;
     let selectedRating2 = 0;
 
