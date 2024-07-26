@@ -7,18 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
     const submitBtn = document.getElementById('submit-btn');
 
-    const stars = document.querySelectorAll('.star');
-    let selectedRating = 0;
+    const stars1 = document.querySelectorAll('#questionnaire1-section .star');
+    const stars2 = document.querySelectorAll('#questionnaire2-section .star');
+    let selectedRating1 = 0;
+    let selectedRating2 = 0;
 
     startBtn.addEventListener('click', () => {
         welcomeSection.style.display = 'none';
         questionnaire1Section.style.display = 'block';
     });
 
-    stars.forEach(star => {
+    stars1.forEach(star => {
         star.addEventListener('click', () => {
-            selectedRating = star.getAttribute('data-value');
-            stars.forEach(s => s.classList.remove('selected'));
+            selectedRating1 = star.getAttribute('data-value');
+            stars1.forEach(s => s.classList.remove('selected'));
+            star.classList.add('selected');
+        });
+    });
+
+    stars2.forEach(star => {
+        star.addEventListener('click', () => {
+            selectedRating2 = star.getAttribute('data-value');
+            stars2.forEach(s => s.classList.remove('selected'));
             star.classList.add('selected');
         });
     });
@@ -26,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nextBtn.addEventListener('click', () => {
         const feedbackText = document.getElementById('feedback-text').value;
         const feedback = {
-            rating: selectedRating,
+            rating: selectedRating1,
             text: feedbackText
         };
         localStorage.setItem('questionnaire1', JSON.stringify(feedback));
@@ -38,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const additionalFeedback = document.getElementById('additional-feedback').value;
         const feedback1 = JSON.parse(localStorage.getItem('questionnaire1'));
         const feedback2 = {
+            additionalRating: selectedRating2,
             additionalFeedback: additionalFeedback
         };
 
