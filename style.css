@@ -5,13 +5,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Body Styling */
 body {
-    background: linear-gradient(135deg, #f06, #ff9);
-    color: #333;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,112 +23,118 @@ body {
 .container {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 30px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    padding: 40px;
     text-align: center;
     width: 80%;
-    max-width: 500px;
-    animation: fadeIn 1s ease-in-out;
+    max-width: 600px;
+    animation: zoomIn 1s ease-in-out;
 }
 
-@keyframes fadeIn {
+@keyframes zoomIn {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: scale(0.8);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
     }
 }
 
 /* Welcome Section */
 .welcome-container h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    color: #f06;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #6a11cb;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .welcome-container p {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
 }
 
 .start-btn {
-    background: #f06;
+    background: linear-gradient(135deg, #ff4081, #ff80ab);
     border: none;
     border-radius: 25px;
     color: white;
     cursor: pointer;
-    font-size: 1.1rem;
-    padding: 10px 20px;
-    transition: background 0.3s ease;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .start-btn:hover {
-    background: #d04;
+    background: linear-gradient(135deg, #f50057, #ff4081);
+    transform: scale(1.05);
 }
 
 /* Feedback Container */
 .feedback-container h1 {
-    font-size: 2rem;
-    margin-bottom: 15px;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
     color: #333;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .feedback-container p {
-    font-size: 1rem;
-    margin-bottom: 20px;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
 }
 
 .feedback-container textarea {
-    border: 2px solid #f06;
+    border: 2px solid #6a11cb;
     border-radius: 10px;
-    padding: 10px;
+    padding: 15px;
     width: 100%;
-    height: 100px;
-    margin-bottom: 15px;
-    font-size: 1rem;
+    height: 120px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
     color: #333;
 }
 
 .feedback-container img {
     max-width: 100%;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Stars Styling */
 .stars {
-    margin: 15px 0;
+    margin: 20px 0;
 }
 
 .star {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #ddd;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .star:hover,
 .star.selected {
-    color: #f06;
+    color: #ff4081;
+    transform: scale(1.2);
 }
 
 /* Navigation Buttons */
 .next-btn, #submit-btn {
-    background: #f06;
+    background: linear-gradient(135deg, #ff4081, #ff80ab);
     border: none;
     border-radius: 25px;
     color: white;
     cursor: pointer;
-    font-size: 1.1rem;
-    padding: 10px 20px;
-    transition: background 0.3s ease;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .next-btn:hover, #submit-btn:hover {
-    background: #d04;
+    background: linear-gradient(135deg, #f50057, #ff4081);
+    transform: scale(1.05);
 }
 
 #submit-btn {
