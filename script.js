@@ -1,30 +1,41 @@
-// script.js
-let questionIndex = 0;
-const images = ['path/to/your/image1.png', 'path/to/your/image2.png', 'path/to/your/image3.png'];
-const responses = [];
+document.addEventListener('DOMContentLoaded', () => {
+    const stars = document.querySelectorAll('.star');
+    const submitBtn = document.getElementById('submit-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    const feedbackContainer = document.querySelector('.feedback-container');
+    let selectedRating = 0;
+    let feedbacks = [];
 
-document.getElementById('feedback-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const rating = document.querySelector('input[name="rating"]:checked');
-    if (rating) {
-        responses.push(rating.value);
-        questionIndex++;
-        if (questionIndex < images.length) {
-            document.getElementById('questionnaire-image').src = images[questionIndex];
-            document.querySelector('input[name="rating"]:checked').checked = false;
-        } else {
-            generateFile();
-        }
-    } else {
-        alert('Please select a rating!');
-    }
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            selectedRating = star.getAttribute('data-value');
+            stars.forEach(s => s.classList.remove('selected'));
+            star.classList.add('selected');
+        });
+    });
+
+    submitBtn.addEventListener('click', () => {
+        const feedbackText = document.getElementById('feedback-text').value;
+        const feedback = {
+            rating: selectedRating,
+            text: feedbackText
+        };
+
+        feedbacks.push(feedback);
+        document.getElementById('feedback-text').value = '';
+        stars.forEach(star => star.classList.remove('selected'));
+
+        alert('Feedback submitted! You can submit another feedback or download all feedbacks.');
+
+        downloadBtn.style.display = 'inline-block';
+    });
+
+    downloadBtn.addEventListener('click', () => {
+        const feedbackFile = new Blob([JSON.stringify(feedbacks, null, 2)], { type: 'application/json' });
+        const feedbackURL = URL.createObjectURL(feedbackFile);
+        const downloadLink = document.createElement('a');
+        downloadLink.href = feedbackURL;
+        downloadLink.download = 'feedbacks.json';
+        downloadLink.click();
+    });
 });
-
-function generateFile() {
-    const blob = new Blob([responses.join('\n')], { type: 'text/plain' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'responses.txt';
-    link.click();
-}
