@@ -4,45 +4,61 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #e0f7fa;
     margin: 0;
 }
 
-.container {
-    text-align: center;
-    max-width: 600px;
-    margin: auto;
+.feedback-container {
+    background-color: #fff;
     padding: 20px;
-    border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
 }
 
-button {
-    padding: 10px 20px;
-    margin-top: 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+h1 {
+    margin-bottom: 10px;
 }
 
-button:hover {
-    background-color: #45a049;
-}
-
-.rating {
-    display: flex;
-    justify-content: center;
+p {
+    font-size: 14px;
     margin-bottom: 20px;
 }
 
-.rating span {
-    font-size: 2em;
-    cursor: pointer;
-    color: #ddd;
+.stars {
+    margin-bottom: 20px;
 }
 
-.rating span.selected {
-    color: gold;
+.star {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ffcc00;
+}
+
+.star.selected {
+    color: #ffa500;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    resize: none;
+}
+
+button {
+    background-color: #ffcc00;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #ffa500;
 }
