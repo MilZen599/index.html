@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const stars = document.querySelectorAll('.star');
-    const submitBtn = document.getElementById('submit-btn');
+    const nextBtn = document.getElementById('next-btn');
     let selectedRating = 0;
 
     stars.forEach(star => {
@@ -11,18 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    submitBtn.addEventListener('click', () => {
+    nextBtn.addEventListener('click', () => {
         const feedbackText = document.getElementById('feedback-text').value;
         const feedback = {
             rating: selectedRating,
             text: feedbackText
         };
-
-        const feedbackFile = new Blob([JSON.stringify(feedback, null, 2)], { type: 'application/json' });
-        const feedbackURL = URL.createObjectURL(feedbackFile);
-        const downloadLink = document.createElement('a');
-        downloadLink.href = feedbackURL;
-        downloadLink.download = 'feedback.json';
-        downloadLink.click();
+        localStorage.setItem('questionnaire1', JSON.stringify(feedback));
+        window.location.href = 'questionnaire2.html';
     });
 });
