@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function rate(index, rating) {
     ratings[index] = rating;
     localStorage.setItem('ratings', JSON.stringify(ratings));
+    const pageIndex = getPageIndex();
     const ratingDivs = document.querySelectorAll('.rating')[index % 2].children;
     for (let i = 0; i < ratingDivs.length; i++) {
         ratingDivs[i].classList.toggle('selected', i < rating);
@@ -38,12 +39,12 @@ function getPageIndex() {
 }
 
 function generateFile() {
-    const content = ratings.map((rating, index) => `Section ${index + 1}: ${rating !== null ? rating : 'Non noté'}/5`).join('\n');
-    const blob = new Blob([content], { type: 'text/plain' });
+    const jsonContent = JSON.stringify(ratings, null, 2);
+    const blob = new Blob([jsonContent], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'resultats.txt';
+    a.download = 'resultats.json';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
