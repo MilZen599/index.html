@@ -8,6 +8,10 @@ body {
     margin: 0;
 }
 
+.container {
+    display: none;
+}
+
 .welcome-container, .feedback-container {
     background-color: #fff;
     padding: 20px;
