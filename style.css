@@ -6,6 +6,7 @@ body {
     height: 100vh;
     background-color: #e0f7fa;
     margin: 0;
+    overflow: hidden; /* Pour éviter le défilement */
 }
 
 .container {
@@ -18,7 +19,9 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 300px;
+    width: 100%; /* Assurez-vous que le conteneur prend toute la largeur disponible */
+    max-width: 300px; /* Limite la largeur maximale pour garder le design */
+    box-sizing: border-box; /* Inclut le padding dans la largeur */
 }
 
 h1 {
@@ -67,4 +70,11 @@ button, .start-btn {
 
 button:hover, .start-btn:hover {
     background-color: #ffa500;
+}
+
+img {
+    max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas la largeur du conteneur */
+    height: auto; /* Maintient le ratio d'aspect */
+    display: block;
+    margin: 0 auto 20px; /* Centre l'image et ajoute un espace en dessous */
 }
