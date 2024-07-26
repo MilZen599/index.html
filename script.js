@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentQuestionnaireIndex = 0;
     let feedbackData = {};
 
+    // Show welcome section initially
+    welcomeSection.style.display = 'block';
+
     startBtn.addEventListener('click', () => {
         console.log("Start button clicked");
         welcomeSection.style.display = 'none';
@@ -45,6 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 collectFeedback(index);
                 if (index < questionnaireSections.length - 1) {
                     showQuestionnaire(index + 1);
+                } else {
+                    console.log("Last questionnaire reached. Show submit button.");
+                    showSubmitButton();
                 }
             });
         }
@@ -61,6 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
         downloadLink.download = 'full_feedback.json';
         downloadLink.click();
     });
+
+    function showSubmitButton() {
+        submitBtn.style.display = 'block';
+    }
 
     // Handle star selection
     questionnaireSections.forEach((section, index) => {
