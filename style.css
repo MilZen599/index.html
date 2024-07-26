@@ -111,6 +111,8 @@ body {
 /* Stars Styling */
 .stars {
     margin: 15px 0;
+    display: flex;
+    justify-content: center;
 }
 
 .star {
@@ -118,6 +120,7 @@ body {
     color: #ddd;
     cursor: pointer;
     transition: color 0.3s ease, transform 0.3s ease;
+    margin: 0 5px;
 }
 
 .star:hover,
