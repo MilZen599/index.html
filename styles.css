@@ -41,16 +41,6 @@ h1 {
     color: #ffa500;
 }
 
-textarea {
-    width: 100%;
-    height: 80px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    resize: none;
-}
-
 button {
     background-color: #ffcc00;
     border: none;
