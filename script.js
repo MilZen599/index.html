@@ -1,46 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const stars = document.querySelectorAll('.star');
-    const submitBtn = document.getElementById('submit-btn');
-    const downloadBtn = document.getElementById('download-btn');
-    const feedbackImage = document.getElementById('feedback-image');
-    let selectedRating = 0;
-    let feedbacks = [];
-    let imageIndex = 1;
+function generateFile() {
+    // Récupérer les réponses de l'utilisateur
+    // Par exemple, vous pouvez récupérer les valeurs des inputs radio et les stocker dans un objet
+    const responses = {
+        page1: document.querySelector('input[name="feedback-page1"]:checked').value,
+        page2: document.querySelector('input[name="feedback-page2"]:checked').value,
+        page3: document.querySelector('input[name="feedback-page3"]:checked').value,
+    };
 
-    stars.forEach(star => {
-        star.addEventListener('click', () => {
-            selectedRating = star.getAttribute('data-value');
-            stars.forEach(s => s.classList.remove('selected'));
-            star.classList.add('selected');
-        });
-    });
-
-    submitBtn.addEventListener('click', () => {
-        const feedback = {
-            rating: selectedRating,
-            image: `image${imageIndex}.jpeg`
-        };
-
-        feedbacks.push(feedback);
-        stars.forEach(star => star.classList.remove('selected'));
-
-        // Switch to next image
-        imageIndex++;
-        if (imageIndex > 2) {
-            imageIndex = 1;
-        }
-        feedbackImage.src = `image${imageIndex}.jpeg`;
-
-        selectedRating = 0;
-        downloadBtn.style.display = 'inline-block';
-    });
-
-    downloadBtn.addEventListener('click', () => {
-        const feedbackFile = new Blob([JSON.stringify(feedbacks, null, 2)], { type: 'application/json' });
-        const feedbackURL = URL.createObjectURL(feedbackFile);
-        const downloadLink = document.createElement('a');
-        downloadLink.href = feedbackURL;
-        downloadLink.download = 'feedbacks.json';
-        downloadLink.click();
-    });
-});
+    // Convertir l'objet en JSON
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(responses));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "responses.json");
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+}
