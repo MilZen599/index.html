@@ -1,63 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
     const welcomeSection = document.getElementById('welcome-section');
-    const questionnaire1Section = document.getElementById('questionnaire1-section');
-    const questionnaire2Section = document.getElementById('questionnaire2-section');
-
+    const questionnaireSections = document.querySelectorAll('.questionnaire-section');
     const startBtn = document.getElementById('start-btn');
-    const nextBtn = document.getElementById('next-btn');
     const submitBtn = document.getElementById('submit-btn');
 
-    const stars1 = document.querySelectorAll('#stars1 .star');
-    const stars2 = document.querySelectorAll('#stars2 .star');
-    let selectedRating1 = 0;
-    let selectedRating2 = 0;
+    let currentQuestionnaireIndex = 0;
+    let feedbackData = {};
 
     startBtn.addEventListener('click', () => {
         welcomeSection.style.display = 'none';
-        questionnaire1Section.style.display = 'block';
+        showQuestionnaire(0);
     });
 
-    stars1.forEach(star => {
-        star.addEventListener('click', () => {
-            selectedRating1 = star.getAttribute('data-value');
-            stars1.forEach(s => s.classList.remove('selected'));
-            star.classList.add('selected');
+    function showQuestionnaire(index) {
+        questionnaireSections.forEach((section, idx) => {
+            section.style.display = idx === index ? 'block' : 'none';
         });
-    });
+    }
 
-    stars2.forEach(star => {
-        star.addEventListener('click', () => {
-            selectedRating2 = star.getAttribute('data-value');
-            stars2.forEach(s => s.classList.remove('selected'));
-            star.classList.add('selected');
-        });
-    });
-
-    nextBtn.addEventListener('click', () => {
-        const feedbackText = document.getElementById('feedback-text').value;
-        const feedback = {
-            rating: selectedRating1,
+    function collectFeedback(index) {
+        const rating = document.querySelector(`#stars${index + 1} .star.selected`)?.getAttribute('data-value') || 0;
+        const feedbackText = document.getElementById(`feedback-text${index + 1}`)?.value || '';
+        feedbackData[`questionnaire${index + 1}`] = {
+            rating: rating,
             text: feedbackText
         };
-        localStorage.setItem('questionnaire1', JSON.stringify(feedback));
-        questionnaire1Section.style.display = 'none';
-        questionnaire2Section.style.display = 'block';
+    }
+
+    questionnaireSections.forEach((section, index) => {
+        const nextBtn = section.querySelector('.next-btn');
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                collectFeedback(index);
+                if (index < questionnaireSections.length - 1) {
+                    showQuestionnaire(index + 1);
+                }
+            });
+        }
     });
 
     submitBtn.addEventListener('click', () => {
-        const additionalFeedback = document.getElementById('additional-feedback').value;
-        const feedback1 = JSON.parse(localStorage.getItem('questionnaire1'));
-        const feedback2 = {
-            additionalRating: selectedRating2,
-            additionalFeedback: additionalFeedback
-        };
-
-        const fullFeedback = {
-            ...feedback1,
-            ...feedback2
-        };
-
-        const feedbackFile = new Blob([JSON.stringify(fullFeedback, null, 2)], { type: 'application/json' });
+        collectFeedback(questionnaireSections.length - 1);
+        const feedbackFile = new Blob([JSON.stringify(feedbackData, null, 2)], { type: 'application/json' });
         const feedbackURL = URL.createObjectURL(feedbackFile);
         const downloadLink = document.createElement('a');
         downloadLink.href = feedbackURL;
@@ -65,6 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
         downloadLink.click();
     });
 
-    // Show welcome section initially
-    welcomeSection.style.display = 'block';
+    // Handle star selection
+    questionnaireSections.forEach((section, index) => {
+        const stars = section.querySelectorAll('.star');
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                stars.forEach(s => s.classList.remove('selected'));
+                star.classList.add('selected');
+            });
+        });
+    });
 });
