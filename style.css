@@ -1,82 +1,78 @@
-/* Général */
 body {
     font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0f7fa;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
-/* Conteneur principal */
 .container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.welcome-container, .feedback-container {
     background-color: #fff;
-}
-
-/* Conteneur de bienvenue */
-#welcome-section {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 300px;
 }
 
-/* Conteneur de feedback */
-.feedback-container {
-    text-align: center;
+h1 {
+    margin-bottom: 10px;
 }
 
-.feedback-container img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
+p {
+    font-size: 14px;
     margin-bottom: 20px;
 }
 
-/* Étoiles */
 .stars {
-    display: inline-block;
+    margin-bottom: 20px;
 }
 
-.stars .star {
-    font-size: 2rem;
+.star {
+    font-size: 30px;
     cursor: pointer;
-    color: #ddd;
+    color: #ffcc00;
 }
 
-.stars .star.selected {
-    color: #f5b301;
+.star.selected {
+    color: #ffa500;
 }
 
-/* Boutons */
-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:focus {
-    outline: none;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Zone de texte */
 textarea {
     width: 100%;
-    max-width: 100%;
-    height: 100px;
-    padding: 10px;
-    margin-top: 20px;
+    height: 80px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    resize: vertical;
+    padding: 10px;
+    resize: none;
+}
+
+button, .start-btn {
+    background-color: #ffcc00;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    color: #000;
+}
+
+button:hover, .start-btn:hover {
+    background-color: #ffa500;
+}
+
+/* New CSS for images */
+.feedback-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
