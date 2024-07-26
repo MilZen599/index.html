@@ -1,28 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const stars = document.querySelectorAll('.star');
+    const feedbackInputs = document.querySelectorAll('.feedback input');
     const submitBtn = document.getElementById('submit-btn');
     const downloadBtn = document.getElementById('download-btn');
     const feedbackImage = document.getElementById('feedback-image');
-    let selectedRating = 0;
+    let selectedFeedback = 0;
     let feedbacks = [];
     let imageIndex = 1;
 
-    stars.forEach(star => {
-        star.addEventListener('click', () => {
-            selectedRating = star.getAttribute('data-value');
-            stars.forEach(s => s.classList.remove('selected'));
-            star.classList.add('selected');
+    feedbackInputs.forEach(input => {
+        input.addEventListener('change', () => {
+            selectedFeedback = input.value;
         });
     });
 
     submitBtn.addEventListener('click', () => {
         const feedback = {
-            rating: selectedRating,
+            feedback: selectedFeedback,
             image: `image${imageIndex}.jpeg`
         };
 
         feedbacks.push(feedback);
-        stars.forEach(star => star.classList.remove('selected'));
+        feedbackInputs.forEach(input => input.checked = false);
 
         // Switch to next image
         imageIndex++;
@@ -31,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         feedbackImage.src = `image${imageIndex}.jpeg`;
 
-        selectedRating = 0;
+        selectedFeedback = 0;
         downloadBtn.style.display = 'inline-block';
     });
 
