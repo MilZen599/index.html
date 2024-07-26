@@ -1,17 +1,28 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const buttons = document.querySelectorAll('.action-button');
+document.addEventListener('DOMContentLoaded', () => {
+    const stars = document.querySelectorAll('.star');
+    const submitBtn = document.getElementById('submit-btn');
+    let selectedRating = 0;
 
-    buttons.forEach(button => {
-        button.addEventListener('click', function () {
-            if (this.classList.contains('rewind')) {
-                alert('Rewind action');
-            } else if (this.classList.contains('nope')) {
-                alert('Nope action');
-            } else if (this.classList.contains('like')) {
-                alert('Like action');
-            } else if (this.classList.contains('super-like')) {
-                alert('Super Like action');
-            }
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            selectedRating = star.getAttribute('data-value');
+            stars.forEach(s => s.classList.remove('selected'));
+            star.classList.add('selected');
         });
+    });
+
+    submitBtn.addEventListener('click', () => {
+        const feedbackText = document.getElementById('feedback-text').value;
+        const feedback = {
+            rating: selectedRating,
+            text: feedbackText
+        };
+
+        const feedbackFile = new Blob([JSON.stringify(feedback, null, 2)], { type: 'application/json' });
+        const feedbackURL = URL.createObjectURL(feedbackFile);
+        const downloadLink = document.createElement('a');
+        downloadLink.href = feedbackURL;
+        downloadLink.download = 'feedback.json';
+        downloadLink.click();
     });
 });
