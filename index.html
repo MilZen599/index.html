@@ -3,31 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tinder Clone</title>
+    <title>Feedback Form</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="settings.png" alt="settings" class="settings-icon">
-            <div class="time">11:52 AM</div>
-            <img src="battery.png" alt="battery" class="battery-icon">
+    <div class="feedback-container">
+        <h1>Rate your experience</h1>
+        <p>We highly value your feedback! Kindly take a moment to rate your experience and provide us with your valuable feedback.</p>
+        <div class="stars">
+            <span class="star" data-value="1">&#9733;</span>
+            <span class="star" data-value="2">&#9733;</span>
+            <span class="star" data-value="3">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+            <span class="star" data-value="5">&#9733;</span>
         </div>
-        <div class="profile">
-            <img src="image1.jpg" alt="Profile Picture" class="profile-pic">
-            <div class="profile-info">
-                <div class="name">Allison, 26</div>
-                <div class="details">
-                    <span class="people-icon"></span> 0 <span class="book-icon"></span> 0
-                </div>
-            </div>
-        </div>
-        <div class="actions">
-            <button class="action-button rewind"></button>
-            <button class="action-button nope"></button>
-            <button class="action-button like"></button>
-            <button class="action-button super-like"></button>
-        </div>
+        <textarea id="feedback-text" placeholder="Tell us about your experience!"></textarea>
+        <button id="submit-btn">Send</button>
     </div>
     <script src="script.js"></script>
 </body>
