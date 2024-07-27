@@ -31,10 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function collectFeedback(index) {
-        const rating = document.querySelector(`#stars${index + 1} .star.selected`)?.getAttribute('data-value') || 0;
+        const ratings = Array.from(document.querySelectorAll(`#questionnaire${index + 1}-section .stars`)).map(stars => {
+            return stars.querySelector('.star.selected')?.getAttribute('data-value') || 0;
+        });
+
         const feedbackText = document.getElementById(`feedback-text${index + 1}`)?.value || '';
         feedbackData[`questionnaire${index + 1}`] = {
-            rating: rating,
+            ratings: ratings,
             text: feedbackText
         };
         console.log(`Collected feedback for questionnaire ${index + 1}:`, feedbackData[`questionnaire${index + 1}`]);
@@ -74,12 +77,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle star selection
     questionnaireSections.forEach((section, index) => {
-        const stars = section.querySelectorAll('.star');
-        stars.forEach(star => {
-            star.addEventListener('click', () => {
-                stars.forEach(s => s.classList.remove('selected'));
-                star.classList.add('selected');
-                console.log(`Star ${star.getAttribute('data-value')} selected for questionnaire ${index + 1}`);
+        const starContainers = section.querySelectorAll('.stars');
+        starContainers.forEach((stars, starIndex) => {
+            const starElements = stars.querySelectorAll('.star');
+            starElements.forEach(star => {
+                star.addEventListener('click', () => {
+                    starElements.forEach(s => s.classList.remove('selected'));
+                    star.classList.add('selected');
+                    console.log(`Star ${star.getAttribute('data-value')} selected for questionnaire ${index + 1}, stars set ${starIndex + 1}`);
+                });
             });
         });
     });
