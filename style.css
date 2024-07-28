@@ -78,3 +78,9 @@ img {
     display: block;
     margin: 0 auto 20px; /* Centre l'image et ajoute un espace en dessous */
 }
+
+video {
+    width: 100vw; /* Prend 100% de la largeur de la fenêtre d'affichage */
+    height: auto; /* Conserve le ratio d'aspect de la vidéo */
+    display: block;
+}
