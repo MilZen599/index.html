@@ -1,50 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feedback Form</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-  <script src="script.js"></script> 
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image et Texte</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="script.js"> </script>
 </head>
-<body> 
-  <div class="tinder">
-    <div class="tinder--status">
-      <i class="fa fa-remove"></i>
-      <i class="fa fa-heart"></i>
+<body>
+ <section>
+    <div class="container">
+        <div class="image-text">
+            <div class="image-container">
+                <img src="votre_image.jpg" alt="Image">
+            </div>
+            <h1 style=";">Paris-brest</h1>
+        </div>
+        <div class="item1"><p class="border1">Aimes?</p></div>
+        <div class="item2"><p class="border1">aujourd'hui?</p></div>
+	<div class="item3">
+		<form action="#" method="#" >
+		<label for="commentaires"></label>
+		<input type="text" id="commentaires" placeholder="...Commentaires...">
+		</form></div>
+        <div class="item4"><a href="#Q2">Suivant</a></div>
     </div>
-    <div class="tinder--cards">
-      <div class="tinder--card">
-        <img src="https://my.alfred.edu/zoom/_images/foster-lake.jpg">
-        <h3>Demo card 1</h3>
-        <p>This is a demo for Tinder like swipe cards</p>
-      </div>
-      <div class="tinder--card">
-        <img src="https://placeimg.com/600/300/animals">
-        <h3>Demo card 2</h3>
-        <p>This is a demo for Tinder like swipe cards</p>
-      </div>
-      <div class="tinder--card">
-        <img src="https://placeimg.com/600/300/nature">
-        <h3>Demo card 3</h3>
-        <p>This is a demo for Tinder like swipe cards</p>
-      </div>
-      <div class="tinder--card">
-        <img src="https://placeimg.com/600/300/tech">
-        <h3>Demo card 4</h3>
-        <p>This is a demo for Tinder like swipe cards</p>
-      </div>
-      <div class="tinder--card">
-        <img src="https://placeimg.com/600/300/arch">
-        <h3>Demo card 5</h3>
-        <p>This is a demo for Tinder like swipe cards</p>
-      </div>
+ </section>
+
+ <section id="Q2">
+    <div class="container">
+        <div class="image-text">
+            <div class="image-container">
+                <img src="OIP.jpg" alt="Image">
+            </div>
+            <h1 style=";">Paris-nimes</h1>
+        </div>
+        <div class="item1"><p class="border1">Aimes?</p></div>
+        <div class="item2"><p class="border1">aujourd'hui?</p></div>
+	<div class="item3">
+		<form action="#" method="#" >
+		<label for="commentaires"></label>
+		<input type="text" id="commentaires" placeholder="...Commentaires...">
+		</form></div>
+        <div class="item4"><a href="#Q3">Suivant</a></div>
     </div>
-    <div class="tinder--buttons">
-      <button id="nope"><i class="fa fa-remove"></i></button>
-      <button id="love"><i class="fa fa-heart"></i></button>
+ </section>
+
+
+ <section id="Q3">
+    <div class="container">
+        <div class="image-text">
+            <div class="image-container">
+                <video id="myVideo" width="600" controls>
+                <source src="vid1.mp4" type="video/mp4">
+            </div>
+            <h1 style=";">Paris-nimes</h1>
+        </div>
+        <div class="item1"><p class="border1">Aimes?</p></div>
+        <div class="item2"><p class="border1">aujourd'hui?</p></div>
+	<div class="item3">
+		<form action="#" method="#" >
+		<label for="commentaires"></label>
+		<input type="text" id="commentaires" placeholder="...Commentaires...">
+		</form></div>
+        <div class="item4"><p>Suivant</p></div>
     </div>
-  </div>
+ </section>
+
 </body>
 </html>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('myVideo');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(video);
+        });
+    </script>
