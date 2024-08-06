@@ -17,3 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
 // Fin Video se lance automqtiquement
+
+
+let icon = document.querySelector('ion-icon');
+icon.onclick = function(){
+  icon.classList.toggle('active');
+}
