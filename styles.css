@@ -23,6 +23,11 @@ section {
     align-items: flex-start;
 }
 
+video {
+    max-width: 90%;
+    height: auto;
+}
+
 .image-container {
     width: 100%;
 }
