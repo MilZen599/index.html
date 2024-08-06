@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image et Texte</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-	<script src="script.js" defer></script>
+	<script src="script.js"></script>
 </head>
 <body>
  <section>
@@ -70,4 +70,20 @@
 
 </body>
 </html>
+
+   <script>
+        function saveComment() {
+            const comment = document.getElementById('commentaires').value;
+            const blob = new Blob([comment], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'commentaires.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+
 
