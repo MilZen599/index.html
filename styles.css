@@ -92,7 +92,7 @@ body {
     }
 }
 
-#slider {
+#slider1 {
     padding: 2rem 2rem 4rem;
     display: grid;
     justify-content: stretch;
@@ -101,7 +101,7 @@ body {
     margin: auto;
 }
 
-#slider input {
+#slider1 input {
     grid-row: 2 / 3;
     grid-column: 1 / 2;
     width: 100%;
@@ -112,11 +112,11 @@ body {
     cursor: pointer;
 }
 
-#slider input:focus + .outer {
+#slider1 input:focus + .outer {
     box-shadow: 0 0 0 0.1em var(--white), 0 0 0 0.2em var(--orange);
 }
 
-#slider > label {
+#slider1 > label {
     width: 100%;
     margin: auto;
     font-size: 1.5em;
