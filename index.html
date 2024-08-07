@@ -27,7 +27,7 @@
 
 
 
-       <form id="slider" @submit.prevent>
+       <form id="slider1" @submit.prevent>
         <label for="range" :style="{ color: getHappinessColor }">Happiness: {{ val }}%</label>
         <input v-model.number="val" id="range" type="range" min=0 max=100>
         <div class="slider outer" aria-hidden="true">
@@ -62,8 +62,29 @@
             </div>
             <h1 style=";">Paris-nimes</h1>
         </div>
-        <div class="item1"><p class="border1">Aimes?</p></div>
-        <div class="item2"><p class="border1">aujourd'hui?</p></div>
+
+
+
+        <div class="item1">
+<button type="button" id="non2">Non</button><button type="button" id="oui2">Oui</button></div>
+
+
+
+       <form id="slider2" @submit.prevent>
+        <label for="range" :style="{ color: getHappinessColor }">Happiness: {{ val }}%</label>
+        <input v-model.number="val" id="range" type="range" min=0 max=100>
+        <div class="slider outer" aria-hidden="true">
+            <label 
+                for="range"
+                :style="{ width: `${val}%`, borderRadius: greaterThanFifty, background: getSliderBackground }"
+                class="slider inner"
+            >
+            </label>
+            <span class="emoji" :style="{ transform: `translateX(${getPlacement})` }">
+                {{ getHappiness }}
+            </span>
+        </div>
+    </form>
 	<div class="item3">
 		<form action="#" method="#" >
 		<label for="commentaires"></label>
@@ -83,9 +104,30 @@
 		</video> 
             </div>
             <h1 style=";">Paris-nimes</h1>
+         </div>
+
+
+
+        <div class="item1">
+<button type="button" id="non3">Non</button><button type="button" id="oui3">Oui</button></div>
+
+
+
+       <form id="slide3r" @submit.prevent>
+        <label for="range" :style="{ color: getHappinessColor }">Happiness: {{ val }}%</label>
+        <input v-model.number="val" id="range" type="range" min=0 max=100>
+        <div class="slider outer" aria-hidden="true">
+            <label 
+                for="range"
+                :style="{ width: `${val}%`, borderRadius: greaterThanFifty, background: getSliderBackground }"
+                class="slider inner"
+            >
+            </label>
+            <span class="emoji" :style="{ transform: `translateX(${getPlacement})` }">
+                {{ getHappiness }}
+            </span>
         </div>
-        <div class="item1"><p class="border1">Aimes?</p></div>
-        <div class="item2"><p class="border1">aujourd'hui?</p></div>
+    </form>
 	<div class="item3">
 		<form action="#" method="#" >
 		<label for="commentaires"></label>
