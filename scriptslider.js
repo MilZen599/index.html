@@ -2,9 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof Vue !== 'undefined') {
         console.log('Vue.js is loaded and ready.');
 
-        // Instance Vue pour le slider1
         new Vue({
-            el: '#slider1',
+            el: '#slider',
             data: () => ({
                 val: 70
             }),
@@ -25,16 +24,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     return `linear-gradient(to right, var(--orange), ${(this.val * -1) + 125}%, var(--yellow))`;
                 },
                 getHappiness() {
-                    let moods = ["😡","😠","😦","☹️","🙁","😐","🙂","😊","😄","😃","😍"]
+                    let moods = ["😡","😠","😦","☹️","🙁","😐","🙂","😊","😄","😃","😍"];
                     if (this.val === 0) {
                         return "🤬";
-                    }
+                    } 
                     return moods[(Math.floor(this.val / 10))];
                 }
             }
         });
-
-        // Créez d'autres instances Vue pour les sliders suivants de manière similaire
     } else {
         console.log('Vue.js failed to load.');
     }
