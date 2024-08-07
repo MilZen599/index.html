@@ -7,18 +7,6 @@
     <title>Image et Texte</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js" defer></script>
-
-	    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof Vue !== 'undefined') {
-                console.log('Vue.js is loaded and ready.');
-            } else {
-                console.log('Vue.js failed to load.');
-            }
-        });
-    </script>
-
-	
     <script src="scriptslider.js" defer></script>
     <script src="script.js"></script>
 </head>
@@ -38,7 +26,7 @@
 <button type="button" id="non1">Non</button><button type="button" id="oui1">Oui</button></div>
 
 
-
+<div class="item2">
        <form id="slider1" @submit.prevent>
         <label for="range" :style="{ color: getHappinessColor }">Happiness: {{ val }}%</label>
         <input v-model.number="val" id="range" type="range" min=0 max=100>
@@ -53,7 +41,7 @@
                 {{ getHappiness }}
             </span>
         </div>
-    </form>
+    </form></div>
 
 
 
