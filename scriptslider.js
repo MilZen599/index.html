@@ -43,7 +43,7 @@ const slider1 = new Vue({
     }
 });
 
-// Instance Vue.js pour le deuxième slider
+// Instance Vue.js pour deuxième slider
 const slider2 = new Vue({
     el: '#slider2',
     data: () => ({
