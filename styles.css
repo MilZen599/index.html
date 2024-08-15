@@ -1,25 +1,10 @@
-:root {
-    --yellow: #ffd100;
-    --orange: #ff6a13;
-    --darkGray: #53565a;
-    --midGray: #888b8d;
-    --white: #fff;
-    --roundness: 1.25em;
-}
-
-*, *:after, *:before {
-    box-sizing: border-box;
-    color: var(--darkGray);
-}
-
 body {
+    margin: 0;
+    font-family: Arial, sans-serif;
     font-family: Nunito, sans-serif;
     min-height: 100vh;
     width: 100vw;
-    display: flex;
     place-items: center;
-    margin: 0;
-    background: var(--white);
     font-size: .5rem;
 }
 
@@ -35,16 +20,120 @@ body {
     }
 }
 
-#slider {
-    padding: 2rem 2rem 4rem; /* Extra padding on bottom helps center-align slider */
-    display: grid; /* TBH grid is probably a little overkill here but ¯\_(ツ)_/¯ */
+section {
+    height: 100vh; /* Chaque section prend 100% de la hauteur de la vue */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin: 10px;
+}
+
+.image-text {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+}
+
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+.image-container {
+    width: 100%;
+}
+
+.image-container img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+h1 {
+    margin: 5px;
+    text-decoration: overline;
+    text-align: left;
+}
+
+.item1, .item2, .item3, .item4 {
+    width: 100%; 
+    text-align: center; 
+}
+
+p.border1, .item3.border1 {
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: AliceBlue;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+/* Style pour le conteneur de chaque section */
+.section-container {
+    border: 2px solid #ADD8E6; /* Bordure bleu pâle */
+    background-color: #E6F7FF; /* Fond bleu pâle */
+    padding: 20px; /* Espace entre le contenu et la bordure */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre portée pour l'effet de profondeur */
+    border-radius: 10px; /* Arrondir les coins */
+    margin: 20px auto; /* Espace autour de la section et centrage horizontal */
+    display: inline-block; /* Pour que la largeur s'ajuste au contenu */
+}
+
+/* Variables CSS communes */
+:root {
+    --yellow: #ffd100;
+    --orange: #ff6a13;
+    --darkGray: #53565a;
+    --midGray: #888b8d;
+    --white: #fff;
+    --roundness: 1.25em;
+}
+
+/* Style pour le bouton cœur */
+*, *:after, *:before {
+    box-sizing: border-box;
+    color: var(--darkGray);
+}
+
+.heart {
+  width: 100px;
+  height: 100px;
+  background: url("heart.png") no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  transition: background-position 1s steps(28);
+  transition-duration: 0s;
+}
+.heart.is-active {
+  transition-duration: 1s;
+  background-position: -2800px 0;
+}
+
+/* Réduction de l'écart entre le bouton heart et le slider */
+.placement {
+    margin-bottom: -40px;
+    margin-top: -40px;
+}
+
+/* Style pour le premier slider */
+#slider1 {
+    padding: 1rem 2rem 2rem; /* Réduit le padding supérieur du slider */
+    margin-bottom: -40px;
+    margin-top: -40px;
+    display: grid;
     justify-content: stretch;
     width: 100%;
     max-width: 37.5em;
     margin: auto;
 }
 
-#slider input {
+#slider1 input {
     grid-row: 2 / 3;
     grid-column: 1 / 2;
     width: 100%;
@@ -55,18 +144,18 @@ body {
     cursor: pointer;
 }
 
-#slider input:focus + .outer {
+#slider1 input:focus + .outer {
     box-shadow: 0 0 0 0.1em var(--white), 0 0 0 0.2em var(--orange);
 }
 
-#slider > label {
+#slider1 > label {
     width: 100%;
     margin: auto;
     font-size: 1.5em;
     padding: 0 0 0.5em;
 }
 
-.outer {
+#slider1 .outer {
     grid-row: 2 / 3;
     grid-column: 1 / 2;
     width: 100%;
@@ -81,7 +170,7 @@ body {
     z-index: 0;
 }
 
-label.inner {
+#slider1 label.inner {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -92,10 +181,82 @@ label.inner {
     transform-origin: left;
 }
 
-.emoji {
+#slider1 .emoji {
     margin-left: -.2em;
     display: inline-block;
-    width: 1em;
+    width: 0.7em;
+    height: 1em;
+    transition: all .15s cubic-bezier(0.5, 0.4, .2, 1);
+    border-radius: var(--roundness);
+    text-align: right;
+    font-size: calc(var(--roundness) * 2);
+    line-height: 1.1;
+}
+
+/* Style pour le deuxième slider */
+#slider2 {
+    padding: 1rem 2rem 2rem; /* Réduit le padding supérieur du slider */
+    margin-bottom: -40px;
+    margin-top: -40px;
+    display: grid;
+    justify-content: stretch;
+    width: 100%;
+    max-width: 37.5em;
+    margin: auto;
+}
+
+#slider2 input {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    height: calc(var(--roundness) * 2);
+    cursor: pointer;
+}
+
+#slider2 input:focus + .outer {
+    box-shadow: 0 0 0 0.1em var(--white), 0 0 0 0.2em var(--orange);
+}
+
+#slider2 > label {
+    width: 100%;
+    margin: auto;
+    font-size: 1.5em;
+    padding: 0 0 0.5em;
+}
+
+#slider2 .outer {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    width: 100%;
+    border-radius: var(--roundness);
+    margin: auto;
+    height: calc(var(--roundness) - 0em);
+    background: var(--midGray);
+    display: flex;
+    align-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+}
+
+#slider2 label.inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    border-top-left-radius: var(--roundness)!important;
+    border-bottom-left-radius: var(--roundness)!important;
+    transition: all .15s cubic-bezier(0.5, 0.4, .2, 1);
+    transform-origin: left;
+}
+
+#slider2 .emoji {
+    margin-left: -.2em;
+    display: inline-block;
+    width: 0.45em;
     height: 1em;
     transition: all .15s cubic-bezier(0.5, 0.4, .2, 1);
     border-radius: var(--roundness);
