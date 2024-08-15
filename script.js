@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// sauve les commentaire
+// sauve les commentaires
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('input[type="text"]').forEach(input => {
         const savedComment = localStorage.getItem(input.id);
