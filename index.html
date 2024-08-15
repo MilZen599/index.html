@@ -6,46 +6,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image et Texte</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="scriptslider.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </head>
 <body>
     <section id="Q1">
-        <div class="container">
-            <div class="image-text">
-                <div class="image-container">
-                    <img src="votre_image.jpg" alt="Image">
+        <div class="section-container">
+            <div class="container">
+                <div class="image-text">
+                    <div class="image-container">
+                        <img src="votre_image.jpg" alt="Image">
+                    </div>
+                    <h1>Paris-brest</h1>    
                 </div>
-                <h1>Paris-brest</h1>    
-            </div>
-            <div class="item1">
-                <button type="button" id="non1">Non</button>
-                <button type="button" id="oui1">Oui</button>
-            </div>
-            <div class="item2" id="slider">
-                <form @submit.prevent>
-                    <label for="range" :style="{ color: getHappinessColor }">Happiness: {{ val }}%</label>
-                    <input v-model.number="val" id="range" type="range" min="0" max="100">
+                <div class="placement">
+                    <div class="heart"></div>
+                </div>
+                <form id="slider1" @submit.prevent>
+                    <label for="range1">Happiness: {{ val1 }}%</label>
+                    <input v-model.number="val1" id="range1" type="range" min="0" max="100">
                     <div class="slider outer" aria-hidden="true">
                         <label 
-                            for="range"
-                            :style="{ width: `${val}%`, borderRadius: greaterThanFifty, background: getSliderBackground }"
+                            for="range1"
+                            :style="{ width: `${val1}%`, borderRadius: greaterThanFifty1, background: getSliderBackground1 }"
                             class="slider inner"
-                        ></label>
-                        <span class="emoji" :style="{ transform: `translateX(${getPlacement})` }">
-                            {{ getHappiness }}
+                        >
+                        </label>
+                        <span class="emoji" :style="{ transform: `translateX(${getPlacement1})` }">
+                            {{ getHappiness1 }}
                         </span>
                     </div>
                 </form>
+                <div class="item3">
+                    <form action="#" method="#">
+                        <label for="com1_1"></label>
+                        <input type="text" id="com1_1" placeholder="...Commentaires...">
+                    </form>
+                </div>
+                <div class="item4"><a href="#Q2">Suivant</a></div>
             </div>
-            <div class="item3">
-                <form action="#" method="#">
-                    <label for="commentaires"></label>
-                    <input type="text" id="com1_1" placeholder="...Commentaires...">
+        </div>
+    </section>
+
+    <section id="Q2">
+        <div class="section-container">
+            <div class="container">
+                <div class="image-text">
+                    <div class="image-container">
+                        <img src="OIP.jpg" alt="Image">
+                    </div>
+                    <h1>Paris-nimes</h1>
+                </div>
+                <div class="placement">
+                    <div class="heart"></div>
+                </div>
+                <form id="slider2" @submit.prevent>
+                    <label for="range2">Happiness: {{ val2 }}%</label>
+                    <input v-model.number="val2" id="range2" type="range" min="0" max="100">
+                    <div class="slider outer" aria-hidden="true">
+                        <label 
+                            for="range2"
+                            :style="{ width: `${val2}%`, borderRadius: greaterThanFifty2, background: getSliderBackground2 }"
+                            class="slider inner"
+                        >
+                        </label>
+                        <span class="emoji" :style="{ transform: `translateX(${getPlacement2})` }">
+                            {{ getHappiness2 }}
+                        </span>
+                    </div>
                 </form>
+                <div class="item3">
+                    <form action="#" method="#">
+                        <label for="com2_1"></label>
+                        <input type="text" id="com2_1" placeholder="...Commentaires...">
+                    </form>
+                </div>
+                <div class="item4"><a href="#Q3">Suivant</a></div>
             </div>
-            <div class="item4"><a href="#Q2">Suivant</a></div>
+        </div>
+    </section>
+
+    <section id="Q3">
+        <div class="section-container">
+            <div class="container">
+                <div class="image-text">
+                    <div class="image-container">
+                        <video id="myVideo" width="600" controls>
+                        <source src="vid1.mp4" type="video/mp4">
+                        </video> 
+                    </div>
+                    <h1>Paris-nimes</h1>
+                </div>
+                <div class="placement">
+                    <div class="heart"></div>
+                </div>
+                <div class="item2"><p class="border1">aujourd'hui?</p></div>
+                <div class="item3">
+                    <form action="#" method="#">
+                        <label for="com3_1"></label>
+                        <input type="text" id="com3_1" placeholder="...Commentaires...">
+                    </form>
+                </div>
+                <div class="item4"><p>Suivant</p></div>
+            </div>
         </div>
     </section>
 </body>
