@@ -21,7 +21,7 @@ body::before {
     right: 0;
     bottom: 0;
     background: inherit; /* Utilise l'image de fond du parent */
-    filter: blur(10px); /* Applique un flou de 5px */
+    filter: blur(5px); /* Applique un flou de 5px */
     z-index: -1; /* Place en arrière-plan */
 }
 
