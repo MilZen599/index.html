@@ -6,6 +6,23 @@ body {
     width: 100vw;
     place-items: center;
     font-size: .5rem;
+    background-image: url('b2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit; /* Utilise l'image de fond du parent */
+    filter: blur(10px); /* Applique un flou de 5px */
+    z-index: -1; /* Place en arrière-plan */
 }
 
 @media (min-width: 440px) {
@@ -61,9 +78,25 @@ h1 {
     text-align: left;
 }
 
-.item1, .item2, .item3, .item4 {
+.item1, .item2 {
     width: 100%; 
     text-align: center; 
+}
+
+.comment-container { /* COM+suivant */
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; /* Espace entre les éléments pour qu'ils ne se chevauchent pas */
+}
+
+.item3 {
+    flex: 1; /* Occupe l'espace restant pour l'input */
+}
+
+.item4 {
+    margin-left: 10px; 
+    text-decoration: none; 
+    color: inherit;
 }
 
 p.border1, .item3.border1 {
@@ -77,12 +110,14 @@ p.border1, .item3.border1 {
 /* Style pour le conteneur de chaque section */
 .section-container {
     border: 2px solid #ADD8E6; /* Bordure bleu pâle */
-    background-color: #E6F7FF; /* Fond bleu pâle */
+    background-color: rgba(169, 204, 227, 0.5);
     padding: 20px; /* Espace entre le contenu et la bordure */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre portée pour l'effet de profondeur */
     border-radius: 10px; /* Arrondir les coins */
     margin: 20px auto; /* Espace autour de la section et centrage horizontal */
-    display: inline-block; /* Pour que la largeur s'ajuste au contenu */
+    display: block; /* Pour que la largeur s'ajuste au contenu */
+ max-width: calc(100% - 20px); /* La largeur maximale est 100% moins 20px (10px de chaque côté) */
+width: auto;
 }
 
 /* Variables CSS communes */
@@ -254,6 +289,78 @@ p.border1, .item3.border1 {
 }
 
 #slider2 .emoji {
+    margin-left: -.2em;
+    display: inline-block;
+    width: 0.45em;
+    height: 1em;
+    transition: all .15s cubic-bezier(0.5, 0.4, .2, 1);
+    border-radius: var(--roundness);
+    text-align: right;
+    font-size: calc(var(--roundness) * 2);
+    line-height: 1.1;
+}
+
+/* Style pour le 3 slider */
+#slider3 {
+    padding: 1rem 2rem 2rem; /* Réduit le padding supérieur du slider */
+    margin-bottom: -40px;
+    margin-top: -40px;
+    display: grid;
+    justify-content: stretch;
+    width: 100%;
+    max-width: 37.5em;
+    margin: auto;
+}
+
+#slider3 input {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    height: calc(var(--roundness) * 2);
+    cursor: pointer;
+}
+
+#slider3 input:focus + .outer {
+    box-shadow: 0 0 0 0.1em var(--white), 0 0 0 0.2em var(--orange);
+}
+
+#slider3 > label {
+    width: 100%;
+    margin: auto;
+    font-size: 1.5em;
+    padding: 0 0 0.5em;
+}
+
+#slider3 .outer {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    width: 100%;
+    border-radius: var(--roundness);
+    margin: auto;
+    height: calc(var(--roundness) - 0em);
+    background: var(--midGray);
+    display: flex;
+    align-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+}
+
+#slider3 label.inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    border-top-left-radius: var(--roundness)!important;
+    border-bottom-left-radius: var(--roundness)!important;
+    transition: all .15s cubic-bezier(0.5, 0.4, .2, 1);
+    transform-origin: left;
+}
+
+#slider3 .emoji {
     margin-left: -.2em;
     display: inline-block;
     width: 0.45em;
