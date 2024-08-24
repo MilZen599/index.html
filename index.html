@@ -7,111 +7,187 @@
     <title>Image et Texte</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scriptslider.js" defer></script>
-    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <section id="Q1">
-        <div class="section-container">
-            <div class="container">
-                <div class="image-text">
-                    <div class="image-container">
-                        <img src="votre_image.jpg" alt="Image">
+    <div id="app">
+        <section v-for="(section, index) in sections" :key="index" :id="'Q' + (index + 1)">
+            <div class="section-container">
+                <div class="container">
+                    <div class="image-text">
+                        <div class="image-container">
+                            <!-- Condition pour afficher une image ou une vidéo -->
+                            <img v-if="section.mediaType === 'image'" :src="section.mediaSrc" :alt="section.title">
+                            <video v-if="section.mediaType === 'video'" :src="section.mediaSrc" controls></video>
+                        </div>
+                        <h1>{{ section.title }}</h1>    
                     </div>
-                    <h1>Paris-brest</h1>    
-                </div>
-                <div class="placement">
-                    <div class="heart"></div>
-                </div>
-                <form id="slider1" @submit.prevent>
-                    <label for="range1">Happiness: {{ val1 }}%</label>
-                    <input v-model.number="val1" id="range1" type="range" min="0" max="100">
-                    <div class="slider outer" aria-hidden="true">
-                        <label 
-                            for="range1"
-                            :style="{ width: `${val1}%`, borderRadius: greaterThanFifty1, background: getSliderBackground1 }"
-                            class="slider inner"
-                        >
-                        </label>
-                        <span class="emoji" :style="{ transform: `translateX(${getPlacement1})` }">
-                            {{ getHappiness1 }}
-                        </span>
+                    <div class="placement">
+                        <div class="heart" @click="toggleHeart(index)" :class="{'is-active': isActiveHeart(index)}"></div>
                     </div>
-                </form>
-                <div class="item3">
-                    <form action="#" method="#">
-                        <label for="com1_1"></label>
-                        <input type="text" id="com1_1" placeholder="...Commentaires...">
+                    <form :id="'slider' + (index + 1)" @submit.prevent class="slider-form">
+                        <label :for="'range' + (index + 1)">Happiness: {{ section.value }}%</label>
+                        <input v-model.number="section.value" :id="'range' + (index + 1)" type="range" min="0" max="100">
+                        <div class="slider outer" aria-hidden="true">
+                            <label 
+                                :for="'range' + (index + 1)"
+                                :style="{ width: `${section.value}%`, borderRadius: greaterThanFifty(section.value), background: getSliderBackground(section.value) }"
+                                class="slider inner"
+                            ></label>
+                            <span class="emoji" :style="{ transform: `translateX(${getPlacement(section.value)})` }">
+                                {{ getHappiness(section.value) }}
+                            </span>
+                        </div>
                     </form>
+                    <div class="comment-container">
+                        <div class="item3">
+                            <input v-model="section.comment" type="text" :id="'com' + (index + 1)" placeholder="...Commentaires...">
+                        </div>
+                        <div class="item4">
+                            <a v-if="index < sections.length - 1" :href="'#Q' + (index + 2)">→</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="item4"><a href="#Q2">Suivant</a></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="Q2">
-        <div class="section-container">
-            <div class="container">
-                <div class="image-text">
-                    <div class="image-container">
-                        <img src="OIP.jpg" alt="Image">
-                    </div>
-                    <h1>Paris-nimes</h1>
-                </div>
-                <div class="placement">
-                    <div class="heart"></div>
-                </div>
-                <form id="slider2" @submit.prevent>
-                    <label for="range2">Happiness: {{ val2 }}%</label>
-                    <input v-model.number="val2" id="range2" type="range" min="0" max="100">
-                    <div class="slider outer" aria-hidden="true">
-                        <label 
-                            for="range2"
-                            :style="{ width: `${val2}%`, borderRadius: greaterThanFifty2, background: getSliderBackground2 }"
-                            class="slider inner"
-                        >
-                        </label>
-                        <span class="emoji" :style="{ transform: `translateX(${getPlacement2})` }">
-                            {{ getHappiness2 }}
-                        </span>
-                    </div>
-                </form>
-                <div class="item3">
-                    <form action="#" method="#">
-                        <label for="com2_1"></label>
-                        <input type="text" id="com2_1" placeholder="...Commentaires...">
-                    </form>
-                </div>
-                <div class="item4"><a href="#Q3">Suivant</a></div>
-            </div>
+        <!-- Bouton Soumettre à la fin de la 37ème section -->
+        <div class="submit-container" style="text-align: center; margin: 20px;">
+            <button @click="downloadValues" style="padding: 10px 20px; font-size: 1.2rem;">Soumettre</button>
         </div>
-    </section>
+    </div>
 
-    <section id="Q3">
-        <div class="section-container">
-            <div class="container">
-                <div class="image-text">
-                    <div class="image-container">
-                        <video id="myVideo" width="600" controls>
-                        <source src="vid1.mp4" type="video/mp4">
-                        </video> 
-                    </div>
-                    <h1>Paris-nimes</h1>
-                </div>
-                <div class="placement">
-                    <div class="heart"></div>
-                </div>
-                <div class="item2"><p class="border1">aujourd'hui?</p></div>
-                <div class="item3">
-                    <form action="#" method="#">
-                        <label for="com3_1"></label>
-                        <input type="text" id="com3_1" placeholder="...Commentaires...">
-                    </form>
-                </div>
-                <div class="item4"><p>Suivant</p></div>
-            </div>
-        </div>
-    </section>
+    <script>
+        // Fonction de debounce pour limiter la fréquence des sauvegardes
+        const debounce = (func, wait) => {
+            let timeout;
+            return function(...args) {
+                const context = this;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), wait);
+            };
+        };
+
+        new Vue({
+            el: '#app',
+            data: {
+                sections: [
+                    { title: 'Section 1', mediaType: 'image', mediaSrc: '1.png', value: parseInt(localStorage.getItem('sliderValue1')) || 50, comment: localStorage.getItem('comment1') || '' },
+                    { title: 'Section 2', mediaType: 'image', mediaSrc: '2.gif', value: parseInt(localStorage.getItem('sliderValue2')) || 50, comment: localStorage.getItem('comment2') || '' },
+                    { title: 'Section 3', mediaType: 'video', mediaSrc: '2.mp4', value: parseInt(localStorage.getItem('sliderValue3')) || 50, comment: localStorage.getItem('comment3') || '' },
+                    { title: 'Section 4', mediaType: 'video', mediaSrc: '3.mp4', value: parseInt(localStorage.getItem('sliderValue4')) || 50, comment: localStorage.getItem('comment4') || '' },
+                    { title: 'Section 5', mediaType: 'image', mediaSrc: '5.gif', value: parseInt(localStorage.getItem('sliderValue5')) || 50, comment: localStorage.getItem('comment5') || '' },
+                    { title: 'Section 6', mediaType: 'video', mediaSrc: '6.mp4', value: parseInt(localStorage.getItem('sliderValue6')) || 50, comment: localStorage.getItem('comment6') || '' },
+                    { title: 'Section 7', mediaType: 'image', mediaSrc: '7.gif', value: parseInt(localStorage.getItem('sliderValue7')) || 50, comment: localStorage.getItem('comment7') || '' },
+                    { title: 'Section 8', mediaType: 'image', mediaSrc: '8.jpg', value: parseInt(localStorage.getItem('sliderValue8')) || 50, comment: localStorage.getItem('comment8') || '' },
+                    { title: 'Section 9', mediaType: 'image', mediaSrc: '9.png', value: parseInt(localStorage.getItem('sliderValue9')) || 50, comment: localStorage.getItem('comment9') || '' },
+                    { title: 'Section 10', mediaType: 'video', mediaSrc: '10.mp4', value: parseInt(localStorage.getItem('sliderValue10')) || 50, comment: localStorage.getItem('comment10') || '' },
+                    { title: 'Section 11', mediaType: 'image', mediaSrc: '11.gif', value: parseInt(localStorage.getItem('sliderValue11')) || 50, comment: localStorage.getItem('comment11') || '' },
+                    { title: 'Section 12', mediaType: 'image', mediaSrc: '12.jpg', value: parseInt(localStorage.getItem('sliderValue12')) || 50, comment: localStorage.getItem('comment12') || '' },
+                    { title: 'Section 13', mediaType: 'video', mediaSrc: '13.mp4', value: parseInt(localStorage.getItem('sliderValue13')) || 50, comment: localStorage.getItem('comment13') || '' },
+                    { title: 'Section 14', mediaType: 'image', mediaSrc: '14.gif', value: parseInt(localStorage.getItem('sliderValue14')) || 50, comment: localStorage.getItem('comment14') || '' },
+                    { title: 'Section 15', mediaType: 'image', mediaSrc: '15.gif', value: parseInt(localStorage.getItem('sliderValue15')) || 50, comment: localStorage.getItem('comment15') || '' },
+                    { title: 'Section 16', mediaType: 'video', mediaSrc: '16.mp4', value: parseInt(localStorage.getItem('sliderValue16')) || 50, comment: localStorage.getItem('comment16') || '' },
+                    { title: 'Section 17', mediaType: 'image', mediaSrc: '18.jpeg', value: parseInt(localStorage.getItem('sliderValue17')) || 50, comment: localStorage.getItem('comment17') || '' },
+                    { title: 'Section 18', mediaType: 'video', mediaSrc: '19.mp4', value: parseInt(localStorage.getItem('sliderValue18')) || 50, comment: localStorage.getItem('comment18') || '' },
+                    { title: 'Section 19', mediaType: 'video', mediaSrc: '20.mkv', value: parseInt(localStorage.getItem('sliderValue19')) || 50, comment: localStorage.getItem('comment19') || '' },
+                    { title: 'Section 20', mediaType: 'video', mediaSrc: '21.mp4', value: parseInt(localStorage.getItem('sliderValue20')) || 50, comment: localStorage.getItem('comment20') || '' },
+                    { title: 'Section 21', mediaType: 'video', mediaSrc: '22.mp4', value: parseInt(localStorage.getItem('sliderValue21')) || 50, comment: localStorage.getItem('comment21') || '' },
+                    { title: 'Section 22', mediaType: 'video', mediaSrc: '23.mp4', value: parseInt(localStorage.getItem('sliderValue22')) || 50, comment: localStorage.getItem('comment22') || '' },
+                    { title: 'Section 23', mediaType: 'video', mediaSrc: '24.mp4', value: parseInt(localStorage.getItem('sliderValue23')) || 50, comment: localStorage.getItem('comment23') || '' },
+                    { title: 'Section 24', mediaType: 'image', mediaSrc: '25.png', value: parseInt(localStorage.getItem('sliderValue24')) || 50, comment: localStorage.getItem('comment24') || '' },
+                    { title: 'Section 25', mediaType: 'video', mediaSrc: '26.mkv', value: parseInt(localStorage.getItem('sliderValue25')) || 50, comment: localStorage.getItem('comment25') || '' },
+                    { title: 'Section 26', mediaType: 'image', mediaSrc: '27.gif', value: parseInt(localStorage.getItem('sliderValue26')) || 50, comment: localStorage.getItem('comment26') || '' },
+                    { title: 'Section 27', mediaType: 'image', mediaSrc: '28.gif', value: parseInt(localStorage.getItem('sliderValue27')) || 50, comment: localStorage.getItem('comment27') || '' },
+                    { title: 'Section 28', mediaType: 'video', mediaSrc: '29.mp4', value: parseInt(localStorage.getItem('sliderValue28')) || 50, comment: localStorage.getItem('comment28') || '' },
+                    { title: 'Section 29', mediaType: 'image', mediaSrc: '30.jpg', value: parseInt(localStorage.getItem('sliderValue29')) || 50, comment: localStorage.getItem('comment29') || '' },
+                    { title: 'Section 30', mediaType: 'image', mediaSrc: '31.gif', value: parseInt(localStorage.getItem('sliderValue30')) || 50, comment: localStorage.getItem('comment30') || '' },
+                    { title: 'Section 31', mediaType: 'video', mediaSrc: '32.mp4', value: parseInt(localStorage.getItem('sliderValue31')) || 50, comment: localStorage.getItem('comment31') || '' },
+                    { title: 'Section 32', mediaType: 'image', mediaSrc: '33.png', value: parseInt(localStorage.getItem('sliderValue32')) || 50, comment: localStorage.getItem('comment32') || '' },
+                    { title: 'Section 33', mediaType: 'image', mediaSrc: '34.png', value: parseInt(localStorage.getItem('sliderValue33')) || 50, comment: localStorage.getItem('comment33') || '' },
+                    { title: 'Section 34', mediaType: 'image', mediaSrc: '35.jpg', value: parseInt(localStorage.getItem('sliderValue34')) || 50, comment: localStorage.getItem('comment34') || '' },
+                    { title: 'Section 35', mediaType: 'image', mediaSrc: '36.jpg', value: parseInt(localStorage.getItem('sliderValue35')) || 50, comment: localStorage.getItem('comment35') || '' },
+                    { title: 'Section 36', mediaType: 'image', mediaSrc: '37.jpg', value: parseInt(localStorage.getItem('sliderValue36')) || 50, comment: localStorage.getItem('comment36') || '' },
+                ]
+            },
+            watch: {
+                sections: {
+                    handler: debounce(function(sections) {
+                        sections.forEach((section, index) => {
+                            localStorage.setItem(`sliderValue${index + 1}`, section.value);
+                            localStorage.setItem(`comment${index + 1}`, section.comment);
+                        });
+                    }, 600),
+                    deep: true
+                }
+            },
+            methods: {
+                toggleHeart(index) {
+                    const sectionId = `heart_${index + 1}`;
+                    const isActive = localStorage.getItem(sectionId) === 'true';
+                    localStorage.setItem(sectionId, !isActive);
+                    this.$forceUpdate();  // Pour forcer la mise à jour de l'affichage
+                },
+                isActiveHeart(index) {
+                    return localStorage.getItem(`heart_${index + 1}`) === 'true';
+                },
+                getPlacement(value) {
+                    return (value * 14.5) + '%';
+                },
+                greaterThanFifty(value) {
+                    return value > 50 ? `var(--roundness)` : `0`;
+                },
+                getSliderBackground(value) {
+                    return `linear-gradient(to right, var(--orange), ${(value * -1) + 125}%, var(--yellow))`;
+                },
+                getHappiness(value) {
+                    const moods = ["😡","😠","😦","☹️","🙁","😐","🙂","😊","😄","😃","😍"];
+                    return value === 0 ? "🤬" : moods[Math.floor(value / 10)];
+                },
+                downloadValues() {
+                    // Créer un objet pour stocker les valeurs
+                    let dataToExport = {};
+
+                    // Récupérer les valeurs des boutons "heart"
+                    for (let i = 1; i <= 37; i++) {
+                        let heartValue = localStorage.getItem(`heart_${i}`);
+                        if (heartValue !== null) {
+                            dataToExport[`heart_${i}`] = heartValue;
+                        }
+                    }
+
+                    // Récupérer les valeurs des sliders
+                    for (let i = 1; i <= 37; i++) {
+                        let sliderValue = localStorage.getItem(`sliderValue${i}`);
+                        if (sliderValue !== null) {
+                            dataToExport[`sliderValue${i}`] = sliderValue;
+                        }
+                    }
+
+                    // Récupérer les commentaires
+                    for (let i = 1; i <= 37; i++) {
+                        let commentValue = localStorage.getItem(`comment${i}`);
+                        if (commentValue !== null) {
+                            dataToExport[`comment${i}`] = commentValue;
+                        }
+                    }
+
+                    // Convertir l'objet en une chaîne JSON
+                    let jsonData = JSON.stringify(dataToExport, null, 2);
+
+                    // Créer un lien de téléchargement et le déclencher automatiquement
+                    let blob = new Blob([jsonData], { type: "application/json" });
+                    let url = URL.createObjectURL(blob);
+                    let a = document.createElement("a");
+                    a.href = url;
+                    a.download = "exported_data.json"; // Nom du fichier
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
