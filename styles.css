@@ -7,9 +7,6 @@ body {
     place-items: center;
     font-size: .5rem;
     background-image: url('b2.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
     position: relative;
 }
 
@@ -21,7 +18,7 @@ body::before {
     right: 0;
     bottom: 0;
     background: inherit; /* Utilise l'image de fond du parent */
-    filter: blur(5px); /* Applique un flou de 5px */
+    filter: blur(10px); /* Applique un flou de 5px */
     z-index: -1; /* Place en arrière-plan */
 }
 
@@ -47,9 +44,13 @@ section {
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    margin: 10px;
+    align-items: center;
+    margin: 10px 10px; /* Marge de 10px à gauche et à droite */
+    width: calc(100% - 20px); /* 100% de la largeur moins les marges */
+    max-width: 100%;
+    box-sizing: border-box; /* Pour inclure les marges et les bordures dans la largeur totale */
 }
+
 
 .image-text {
     display: flex;
@@ -60,6 +61,7 @@ section {
 video {
     max-width: 100%;
     height: auto;
+ border-radius: 10px;
 }
 
 .image-container {
@@ -70,6 +72,7 @@ video {
     display: block;
     max-width: 100%;
     height: auto;
+ border-radius: 10px;
 }
 
 h1 {
@@ -111,7 +114,7 @@ p.border1, .item3.border1 {
 .section-container {
     border: 2px solid #ADD8E6; /* Bordure bleu pâle */
     background-color: rgba(169, 204, 227, 0.5);
-    padding: 20px; /* Espace entre le contenu et la bordure */
+    padding: 2px; /* Espace entre le contenu et la bordure */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre portée pour l'effet de profondeur */
     border-radius: 10px; /* Arrondir les coins */
     margin: 20px auto; /* Espace autour de la section et centrage horizontal */
@@ -156,8 +159,8 @@ width: auto;
     margin-top: -40px;
 }
 
-/* Style pour le premier slider */
-#slider1 {
+/* Style commun pour tous les sliders */
+.slider-form {
     padding: 1rem 2rem 2rem; /* Réduit le padding supérieur du slider */
     margin-bottom: -40px;
     margin-top: -40px;
@@ -168,7 +171,7 @@ width: auto;
     margin: auto;
 }
 
-#slider1 input {
+.slider-form input {
     grid-row: 2 / 3;
     grid-column: 1 / 2;
     width: 100%;
@@ -179,18 +182,18 @@ width: auto;
     cursor: pointer;
 }
 
-#slider1 input:focus + .outer {
+.slider-form input:focus + .outer {
     box-shadow: 0 0 0 0.1em var(--white), 0 0 0 0.2em var(--orange);
 }
 
-#slider1 > label {
+.slider-form > label {
     width: 100%;
     margin: auto;
     font-size: 1.5em;
     padding: 0 0 0.5em;
 }
 
-#slider1 .outer {
+.slider-form .outer {
     grid-row: 2 / 3;
     grid-column: 1 / 2;
     width: 100%;
@@ -205,7 +208,7 @@ width: auto;
     z-index: 0;
 }
 
-#slider1 label.inner {
+.slider-form label.inner {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -216,154 +219,10 @@ width: auto;
     transform-origin: left;
 }
 
-#slider1 .emoji {
+.slider-form .emoji {
     margin-left: -.2em;
     display: inline-block;
     width: 0.7em;
-    height: 1em;
-    transition: all .15s cubic-bezier(0.5, 0.4, .2, 1);
-    border-radius: var(--roundness);
-    text-align: right;
-    font-size: calc(var(--roundness) * 2);
-    line-height: 1.1;
-}
-
-/* Style pour le deuxième slider */
-#slider2 {
-    padding: 1rem 2rem 2rem; /* Réduit le padding supérieur du slider */
-    margin-bottom: -40px;
-    margin-top: -40px;
-    display: grid;
-    justify-content: stretch;
-    width: 100%;
-    max-width: 37.5em;
-    margin: auto;
-}
-
-#slider2 input {
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    height: calc(var(--roundness) * 2);
-    cursor: pointer;
-}
-
-#slider2 input:focus + .outer {
-    box-shadow: 0 0 0 0.1em var(--white), 0 0 0 0.2em var(--orange);
-}
-
-#slider2 > label {
-    width: 100%;
-    margin: auto;
-    font-size: 1.5em;
-    padding: 0 0 0.5em;
-}
-
-#slider2 .outer {
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
-    width: 100%;
-    border-radius: var(--roundness);
-    margin: auto;
-    height: calc(var(--roundness) - 0em);
-    background: var(--midGray);
-    display: flex;
-    align-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 0;
-}
-
-#slider2 label.inner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: var(--white);
-    border-top-left-radius: var(--roundness)!important;
-    border-bottom-left-radius: var(--roundness)!important;
-    transition: all .15s cubic-bezier(0.5, 0.4, .2, 1);
-    transform-origin: left;
-}
-
-#slider2 .emoji {
-    margin-left: -.2em;
-    display: inline-block;
-    width: 0.45em;
-    height: 1em;
-    transition: all .15s cubic-bezier(0.5, 0.4, .2, 1);
-    border-radius: var(--roundness);
-    text-align: right;
-    font-size: calc(var(--roundness) * 2);
-    line-height: 1.1;
-}
-
-/* Style pour le 3 slider */
-#slider3 {
-    padding: 1rem 2rem 2rem; /* Réduit le padding supérieur du slider */
-    margin-bottom: -40px;
-    margin-top: -40px;
-    display: grid;
-    justify-content: stretch;
-    width: 100%;
-    max-width: 37.5em;
-    margin: auto;
-}
-
-#slider3 input {
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    height: calc(var(--roundness) * 2);
-    cursor: pointer;
-}
-
-#slider3 input:focus + .outer {
-    box-shadow: 0 0 0 0.1em var(--white), 0 0 0 0.2em var(--orange);
-}
-
-#slider3 > label {
-    width: 100%;
-    margin: auto;
-    font-size: 1.5em;
-    padding: 0 0 0.5em;
-}
-
-#slider3 .outer {
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
-    width: 100%;
-    border-radius: var(--roundness);
-    margin: auto;
-    height: calc(var(--roundness) - 0em);
-    background: var(--midGray);
-    display: flex;
-    align-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 0;
-}
-
-#slider3 label.inner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: var(--white);
-    border-top-left-radius: var(--roundness)!important;
-    border-bottom-left-radius: var(--roundness)!important;
-    transition: all .15s cubic-bezier(0.5, 0.4, .2, 1);
-    transform-origin: left;
-}
-
-#slider3 .emoji {
-    margin-left: -.2em;
-    display: inline-block;
-    width: 0.45em;
     height: 1em;
     transition: all .15s cubic-bezier(0.5, 0.4, .2, 1);
     border-radius: var(--roundness);
