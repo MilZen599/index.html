@@ -18,7 +18,7 @@
                         <div class="image-container">
                             <!-- Condition pour afficher une image ou une vidéo -->
                             <img v-if="section.mediaType === 'image'" :src="section.mediaSrc" :alt="section.title">
-                            <video v-if="section.mediaType === 'video'" :src="section.mediaSrc" controls></video>
+                            <video v-if="section.mediaType === 'video'" :src="section.mediaSrc" controls autoplay></video>
                         </div>
                         <h1>{{ section.title }}</h1>    
                     </div>
