@@ -45,7 +45,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px 10px; /* Marge de 10px à gauche et à droite */
+     /* margin: 10px 10px; Marge de 10px à gauche et à droite */
     width: calc(100% - 20px); /* 100% de la largeur moins les marges */
     max-width: 100%;
     box-sizing: border-box; /* Pour inclure les marges et les bordures dans la largeur totale */
